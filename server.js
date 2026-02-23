@@ -11,6 +11,11 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
+// Health check route — ping this with UptimeRobot to prevent Render from sleeping
+app.get("/", (req, res) => {
+  res.status(200).json({ status: "alive" });
+});
+
 const birthQuestions = {
   birthInfo: "What's your date of birth and where were you born? (e.g. 15 March 1998, Mumbai)",
 };
